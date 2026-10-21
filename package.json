@@ -19,9 +19,9 @@
     "tape": "3.x"
   },
   "scripts": {
-    "test": "npm run bs58.compatibility.test; npm run node.test; npm run window.test",
-    "node.test": "coffee --compile Base58.coffee; coffee Base58.node.test.coffee",
-    "window.test": "coffee --compile window_test_harness.coffee Base58_Test.coffee Base58.window.test.coffee; browserify Base58.window.test.js > window.js; open window.html",
-    "bs58.compatibility.test": "coffee --compile Base58.coffee; mocha"
+    "test": "npm run bs58.compatibility.test && npm run node.test && npm run window.test",
+    "node.test": "coffee --compile Base58.coffee && coffee Base58.node.test.coffee",
+    "window.test": "coffee --compile window_test_harness.coffee Base58_Test.coffee Base58.window.test.coffee && browserify Base58.window.test.js > window.js && node -e \"var c={win32:'start',darwin:'open'}[process.platform]||'xdg-open';require('child_process').exec(c+' window.html')\"",
+    "bs58.compatibility.test": "coffee --compile Base58.coffee && mocha"
   }
 }
